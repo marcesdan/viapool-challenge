@@ -29,6 +29,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^4.5.0",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
@@ -41,7 +42,12 @@
     "webpack-merge": "^5.2.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "apisauce": "^2.0.1",
+    "formik": "^2.2.6",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "recoil": "^0.1.2",
+    "yup": "^0.32.8"
   }
 }
