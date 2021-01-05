@@ -68,4 +68,8 @@ module.exports = {
       { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
     ],
   },
+
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+  },
 };
