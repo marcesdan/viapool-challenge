@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { get } from 'lodash';
-import GithubActions from '../redux/GithubRedux';
+import GithubRedux from '../redux/GithubRedux';
 
 export default function* getUserAvatar(api, action) {
   const { username } = action;
@@ -10,8 +10,8 @@ export default function* getUserAvatar(api, action) {
     const firstUser = get(response, 'data.items')[0];
     const avatar = firstUser.avatar_url;
     // do data conversion here if needed
-    yield put(GithubActions.userSuccess(avatar));
+    yield put(GithubRedux.userSuccess(avatar));
   } else {
-    yield put(GithubActions.userFailure());
+    yield put(GithubRedux.userFailure());
   }
 }

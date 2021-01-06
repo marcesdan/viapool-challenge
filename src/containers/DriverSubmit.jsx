@@ -7,7 +7,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import axios from 'axios';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
@@ -19,8 +18,6 @@ const styles = {
 
 };
 
-const contactFormEndpoint = process.env.REACT_APP_CONTACT_ENDPOINT;
-
 function DriverSubmit(props) {
   const { classes } = props;
   const [open, setOpen] = useState(false);
@@ -28,127 +25,100 @@ function DriverSubmit(props) {
 
   function handleClose() {
     setOpen(false);
-  }
-
-  function handleClickOpen() {
     setSubmitionCompleted(false);
-    setOpen(true);
   }
-
   return (
     <>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Contact us!
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        {!isSubmitionCompleted
+      {!isSubmitionCompleted
         && (
         <>
-          <DialogTitle id="form-dialog-title">Contact</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Send us a comment!
-            </DialogContentText>
-            <Formik
-              initialValues={{ email: '', name: '', comment: '' }}
-              onSubmit={(values, { setSubmitting }) => {
-                setSubmitting(true);
-                axios.post(contactFormEndpoint,
-                  values,
-                  {
-                    headers: {
-                      'Access-Control-Allow-Origin': '*',
-                      'Content-Type': 'application/json',
-                    },
-                  }).then((resp) => {
-                  setSubmitionCompleted(true);
-                });
-              }}
-              validationSchema={Yup.object().shape({
-                email: Yup.string()
-                  .email()
-                  .required('Required'),
-                name: Yup.string()
-                  .required('Required'),
-                comment: Yup.string()
-                  .required('Required'),
-              })}
-            >
-              {(formikProps) => {
-                const {
-                  values,
-                  touched,
-                  errors,
-                  dirty,
-                  isSubmitting,
-                  handleChange,
-                  handleBlur,
-                  handleSubmit,
-                  handleReset,
-                } = formikProps;
-                return (
-                  <form onSubmit={handleSubmit}>
-                    <TextField
-                      label="name"
-                      name="name"
-                      className={classes.textField}
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      helperText={(errors.name && touched.name) && errors.name}
-                      margin="normal"
-                    />
+          <h1>Contact</h1>
+          <h2>Send us a comment!</h2>
+          <Formik
+            initialValues={{ email: '', name: '', comment: '' }}
+            onSubmit={(values, { setSubmitting }) => {
+              setSubmitting(true);
+              alert('yes');
+              setSubmitionCompleted(true);
+            }}
+            validationSchema={Yup.object().shape({
+              email: Yup.string()
+                .email()
+                .required('Required'),
+              name: Yup.string()
+                .required('Required'),
+              comment: Yup.string()
+                .required('Required'),
+            })}
+          >
+            {(formikProps) => {
+              const {
+                values,
+                touched,
+                errors,
+                dirty,
+                isSubmitting,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                handleReset,
+              } = formikProps;
+              return (
+                <form onSubmit={handleSubmit}>
+                  <TextField
+                    label="name"
+                    name="name"
+                    className={classes.textField}
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={(errors.name && touched.name) && errors.name}
+                    margin="normal"
+                  />
 
-                    <TextField
-                      error={errors.email && touched.email}
-                      label="email"
-                      name="email"
-                      className={classes.textField}
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      helperText={(errors.email && touched.email) && errors.email}
-                      margin="normal"
-                    />
+                  <TextField
+                    error={errors.email && touched.email}
+                    label="email"
+                    name="email"
+                    className={classes.textField}
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={(errors.email && touched.email) && errors.email}
+                    margin="normal"
+                  />
 
-                    <TextField
-                      label="comment"
-                      name="comment"
-                      className={classes.textField}
-                      value={values.comment}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      helperText={(errors.comment && touched.comment) && errors.comment}
-                      margin="normal"
-                    />
-                    <DialogActions>
-                      <Button
-                        type="button"
-                        className="outline"
-                        onClick={handleReset}
-                        disabled={!dirty || isSubmitting}
-                      >
-                        Reset
-                      </Button>
-                      <Button type="submit" disabled={isSubmitting}>
-                        Submit
-                      </Button>
-                      {/* <DisplayFormikState {...props} /> */}
-                    </DialogActions>
-                  </form>
-                );
-              }}
-            </Formik>
-          </DialogContent>
+                  <TextField
+                    label="comment"
+                    name="comment"
+                    className={classes.textField}
+                    value={values.comment}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={(errors.comment && touched.comment) && errors.comment}
+                    margin="normal"
+                  />
+                  <Button
+                    type="button"
+                    className="outline"
+                    onClick={handleReset}
+                    disabled={!dirty || isSubmitting}
+                  >
+                    Reset
+                  </Button>
+                  <Button type="submit" disabled={isSubmitting}>
+                    Submit
+                  </Button>
+                  {/* <DisplayFormikState {...props} /> */}
+                </form>
+              );
+            }}
+          </Formik>
         </>
         )}
-        {isSubmitionCompleted
+      {isSubmitionCompleted
         && (
-        <>
+        <Dialog open={isSubmitionCompleted}>
           <DialogTitle id="form-dialog-title">Thanks!</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -165,9 +135,8 @@ function DriverSubmit(props) {
               {/* <DisplayFormikState {...props} /> */}
             </DialogActions>
           </DialogContent>
-        </>
+        </Dialog>
         )}
-      </Dialog>
     </ >
   );
 }

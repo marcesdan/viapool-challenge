@@ -1,13 +1,15 @@
 import { put, select } from 'redux-saga/effects';
 import { isString } from 'lodash';
-import GithubActions, { GithubSelectors } from '../redux/GithubRedux';
+import GitHubRedux, { GithubSelectors } from '../redux/GithubRedux';
+import DebugConfig from '../config/DebugConfig';
 
 // exported to make available for tests
 export const { selectAvatar } = GithubSelectors;
 
 // process STARTUP actions
 export function* startup() {
-  if (__DEV__ && console.tron) {
+  alert('asdasd')
+  if (DebugConfig.useReactotron && console.tron) {
     // straight-up string logging
     console.tron.log('Hello, I\'m an example of how to log via Reactotron.');
 
@@ -35,6 +37,6 @@ export function* startup() {
   const avatar = yield select(selectAvatar);
   // only get if we don't have it yet
   if (!isString(avatar)) {
-    yield put(GithubActions.userRequest('marcesdan'));
+    yield put(GitHubRedux.userRequest('marcesdan'));
   }
 }

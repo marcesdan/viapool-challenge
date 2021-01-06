@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import Config from '../config/DebugConfig';
-import ScreenTracking from './ScreenTrackingMiddleware';
 import Reactotron from '../config/ReactotronConfig';
 
 // creates the store
@@ -12,7 +11,7 @@ export default (rootReducer, rootSaga) => {
   const enhancers = [];
 
   /* ------------- Analytics Middleware ------------- */
-  middleware.push(ScreenTracking);
+  // middleware.push(ScreenTracking);
 
   /* ------------- Saga Middleware ------------- */
 
@@ -24,7 +23,8 @@ export default (rootReducer, rootSaga) => {
 
   enhancers.push(applyMiddleware(...middleware));
 
-  // if Reactotron is enabled (default for __DEV__), we'll create the store through Reactotron
+  // if Reactotron is enabled (default for process.env.NODE_ENV === 'development'),
+  // we'll create the store through Reactotron
   const createAppropriateStore = createStore;
   if (Config.useReactotron) {
     enhancers.push(Reactotron.createEnhancer());

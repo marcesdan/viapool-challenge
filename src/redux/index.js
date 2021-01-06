@@ -1,29 +1,25 @@
-import { combineReducers } from 'redux'
-import configureStore from './CreateStore'
-import rootSaga from '../sagas/'
+import { combineReducers } from 'redux';
+import configureStore from './CreateStore';
+import rootSaga from '../sagas';
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
-  nav: require('./NavigationRedux').reducer,
   github: require('./GithubRedux').reducer,
-  search: require('./SearchRedux').reducer
-})
+});
 
 export default () => {
-  let { store, sagasManager, sagaMiddleware } = configureStore(reducers, rootSaga)
-
+  let { store, sagasManager, sagaMiddleware } = configureStore(reducers, rootSaga);
   if (module.hot) {
     module.hot.accept(() => {
-      const nextRootReducer = require('./').reducers
-      store.replaceReducer(nextRootReducer)
-
-      const newYieldedSagas = require('../sagas').default
-      sagasManager.cancel()
+      const nextRootReducer = require('.').reducers;
+      store.replaceReducer(nextRootReducer);
+      const newYieldedSagas = require('../sagas').default;
+      sagasManager.cancel();
       sagasManager.done.then(() => {
-        sagasManager = sagaMiddleware(newYieldedSagas)
-      })
-    })
+        sagasManager = sagaMiddleware(newYieldedSagas);
+      });
+    });
   }
 
-  return store
-}
+  return store;
+};

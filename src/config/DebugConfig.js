@@ -1,4 +1,3 @@
 export default {
-  reduxLogging: __DEV__,
-  useReactotron: __DEV__,
+  useReactotron: process.env.NODE_ENV === 'development',
 };

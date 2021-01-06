@@ -7,8 +7,11 @@ import { reactotronRedux as reduxPlugin } from 'reactotron-redux';
 import sagaPlugin from 'reactotron-redux-saga';
 import Config from './DebugConfig';
 
-const reactotron = Reactotron
-  .configure({ name: 'Drivers App' })
+const reactotron = Reactotron.configure({
+  name: 'Drivers App',
+  host: 'localhost',
+  port: 9090,
+})
   .use(reduxPlugin({ onRestore: Immutable }))
   .use(sagaPlugin());
 
