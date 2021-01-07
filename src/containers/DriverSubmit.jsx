@@ -11,6 +11,8 @@ import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
 import * as Yup from 'yup';
+import Typography from '../components/Typography';
+import FormContainer from '../components/FormBox';
 
 // import { DisplayFormikState } from './formikHelper';
 
@@ -31,9 +33,10 @@ function DriverSubmit(props) {
     <>
       {!isSubmitionCompleted
         && (
-        <>
-          <h1>Contact</h1>
-          <h2>Send us a comment!</h2>
+        <FormContainer>
+          <Typography variant="h3" gutterBottom marked="center" align="center">
+            Sign Up
+          </Typography>
           <Formik
             initialValues={{ email: '', name: '', comment: '' }}
             onSubmit={(values, { setSubmitting }) => {
@@ -65,9 +68,8 @@ function DriverSubmit(props) {
               return (
                 <form onSubmit={handleSubmit}>
                   <TextField
-                    label="name"
+                    label="Nombre Completo"
                     name="name"
-                    className={classes.textField}
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -77,34 +79,52 @@ function DriverSubmit(props) {
 
                   <TextField
                     error={errors.email && touched.email}
-                    label="email"
+                    label="Email"
                     name="email"
-                    className={classes.textField}
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     helperText={(errors.email && touched.email) && errors.email}
                     margin="normal"
                   />
-
                   <TextField
-                    label="comment"
-                    name="comment"
-                    className={classes.textField}
+                    label="Teléfono"
+                    name="phone"
+                    value={values.comment}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={(errors.comment && touched.comment) && errors.comment}
+                    margin="normal"
+                    type="date"
+                  />
+                  <TextField
+                    label="Marca"
+                    name="marca"
                     value={values.comment}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     helperText={(errors.comment && touched.comment) && errors.comment}
                     margin="normal"
                   />
-                  <Button
-                    type="button"
-                    className="outline"
-                    onClick={handleReset}
-                    disabled={!dirty || isSubmitting}
-                  >
-                    Reset
-                  </Button>
+                  <TextField
+                    label="Modelo"
+                    name="modelo"
+                    value={values.comment}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={(errors.comment && touched.comment) && errors.comment}
+                    margin="normal"
+                  />
+                  <TextField
+                    label="Año"
+                    name="ano"
+                    value={values.comment}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={(errors.comment && touched.comment) && errors.comment}
+                    margin="normal"
+                    type="number"
+                  />
                   <Button type="submit" disabled={isSubmitting}>
                     Submit
                   </Button>
@@ -113,7 +133,7 @@ function DriverSubmit(props) {
               );
             }}
           </Formik>
-        </>
+        </FormContainer>
         )}
       {isSubmitionCompleted
         && (
