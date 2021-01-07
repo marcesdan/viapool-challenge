@@ -8,7 +8,6 @@ export const { selectAvatar } = GithubSelectors;
 
 // process STARTUP actions
 export function* startup() {
-  alert('asdasd')
   if (DebugConfig.useReactotron && console.tron) {
     // straight-up string logging
     console.tron.log('Hello, I\'m an example of how to log via Reactotron.');

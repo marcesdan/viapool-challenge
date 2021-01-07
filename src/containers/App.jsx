@@ -8,12 +8,7 @@ import RootContainer from './RootContainer';
 
 // create our store
 const store = createStore();
-const theme = createMuiTheme({
-  palette: {
-    primary: '#e89eef',
-    secondary: '#336b87',
-  },
-});
+const theme = createMuiTheme();
 
 const App = () => (
   <Provider store={store}>

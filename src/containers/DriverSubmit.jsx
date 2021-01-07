@@ -38,7 +38,6 @@ function DriverSubmit(props) {
             initialValues={{ email: '', name: '', comment: '' }}
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
-              alert('yes');
               setSubmitionCompleted(true);
             }}
             validationSchema={Yup.object().shape({
