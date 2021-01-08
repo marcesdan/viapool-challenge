@@ -8,13 +8,11 @@ import Paper from './Paper';
 const styles = (theme) => ({
   root: {
     display: 'flex',
-    backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',
-    backgroundRepeat: 'no-repeat',
   },
   paper: {
     padding: theme.spacing(4, 3),
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(8, 6),
+      padding: theme.spacing(8, 16),
     },
   },
 });
@@ -24,8 +22,8 @@ function FormBox(props) {
 
   return (
     <div className={classes.root}>
-      <Container maxWidth="sm">
-        <Box mt={4} mb={12}>
+      <Container maxWidth="md">
+        <Box mt={3} mb={12}>
           <Paper className={classes.paper}>{children}</Paper>
         </Box>
       </Container>
@@ -35,7 +33,6 @@ function FormBox(props) {
 
 FormBox.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(FormBox);
