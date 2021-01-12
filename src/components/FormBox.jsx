@@ -2,32 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from './Paper';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Paper from '@material-ui/core/Paper';
 
-const styles = (theme) => ({
-  root: {
-    display: 'flex',
-  },
+const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(4, 3),
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(8, 16),
+      padding: theme.spacing(2, 4),
     },
+    textAlign: 'center',
   },
-});
+}));
 
 function FormBox(props) {
-  const { children, classes } = props;
-
+  const { children } = props;
+  const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Container maxWidth="md">
-        <Box mt={3} mb={12}>
-          <Paper className={classes.paper}>{children}</Paper>
-        </Box>
-      </Container>
-    </div>
+    <Container maxWidth="md">
+      <Box mt={3} mb={12}>
+        <div className={classes.paper}>{children}</div>
+      </Box>
+    </Container>
   );
 }
 
@@ -35,4 +31,4 @@ FormBox.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles(styles)(FormBox);
+export default FormBox;
