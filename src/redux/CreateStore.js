@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import Config from '../config/DebugConfig';
-import Reactotron from '../config/ReactotronConfig';
+import '../config/ReactotronConfig';
 
 // creates the store
 export default (rootReducer, rootSaga) => {
@@ -27,13 +27,12 @@ export default (rootReducer, rootSaga) => {
   // we'll create the store through Reactotron
   const createAppropriateStore = createStore;
   if (Config.useReactotron) {
-    enhancers.push(Reactotron.createEnhancer());
+    enhancers.push(console.tron.createEnhancer());
   }
   const store = createAppropriateStore(rootReducer, compose(...enhancers));
 
   // kick off root saga
   const sagasManager = sagaMiddleware.run(rootSaga);
-
   return {
     store,
     sagasManager,

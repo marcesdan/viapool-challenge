@@ -10,6 +10,7 @@ module.exports = {
   output: {
     path: paths.build,
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: '/',
   },
   // Customize the webpack build process

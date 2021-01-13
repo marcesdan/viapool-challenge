@@ -12,6 +12,8 @@ import { GithubTypes } from '../redux/GithubRedux';
 
 import { startup } from './StartupSagas';
 import getUserAvatar from './GithubSagas';
+import { DriversTypes } from '../redux/DriversRedux';
+import { getEnabledDomains, registerDriver } from './DriversSagas';
 
 /* ------------- API ------------- */
 
@@ -30,5 +32,7 @@ export default function* root() {
     takeLatest(StartupTypes.STARTUP, startup),
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, gitHubSrv),
+    takeLatest(DriversTypes.ENABLED_DOMAINS_REQUEST, getEnabledDomains, driversSrv),
+    takeLatest(DriversTypes.DRIVERS_REGISTER_REQUEST, registerDriver, driversSrv),
   ]);
 }

@@ -5,6 +5,7 @@ import rootSaga from '../sagas';
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
   github: require('./GithubRedux').reducer,
+  drivers: require('./DriversRedux').reducer,
 });
 
 export default () => {

@@ -1,9 +1,14 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { useSelector } from 'react-redux';
 import DriverInfo from '../components/DriverInfo';
 import DriverForm from '../components/DriverForm';
+import DriversRedux, { DriversSelectors } from '../redux/DriversRedux';
 
-function DriverSubmit() {
+const handleSubmit = (data) => DriversRedux.driversRegisterRequest(data);
+
+const DriverSubmit = () => {
+  const isDomainEnabled = (domain) => useSelector(DriversSelectors.isDomainEnabled(domain));
   return (
     <Grid
       container
@@ -14,10 +19,10 @@ function DriverSubmit() {
         <DriverInfo />
       </Grid>
       <Grid item xs={12} md={5} elevation={6} square style={{ alignSelf: 'center' }}>
-        <DriverForm />
+        <DriverForm isDomainEnabled={isDomainEnabled} handleSubmit={handleSubmit} />
       </Grid>
     </Grid>
   );
-}
+};
 
 export default DriverSubmit;
