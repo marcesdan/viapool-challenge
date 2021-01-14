@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { capitalize } from '@material-ui/core/utils';
-import MuiTypography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import {capitalize} from '@material-ui/core/utils';
+import {Typography as MuiTypography} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   markedH2Center: {
@@ -35,23 +35,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Typography(props) {
+const Typography = (props) => {
   const {
     children,
     marked = false,
     variant,
   } = props;
   const classes = useStyles();
-
+  const className = classes[`marked${capitalize(variant) + capitalize(marked)}`]
   return (
     <MuiTypography variant={variant} gutterBottom>
       {children}
       {marked ? (
-        <span className={classes[`marked${capitalize(variant) + capitalize(marked)}`]} />
+        <span
+          className={className}
+        />
       ) : null}
     </MuiTypography>
   );
-}
+};
 
 Typography.propTypes = {
   children: PropTypes.node.isRequired,

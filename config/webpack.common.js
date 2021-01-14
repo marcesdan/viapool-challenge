@@ -65,4 +65,9 @@ module.exports = {
   resolve: {
     extensions: ['.wasm', '.mjs', '.js', '.jsx', '.json'],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 };

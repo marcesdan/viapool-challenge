@@ -1,7 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import Config from '../config/DebugConfig';
-import '../config/ReactotronConfig';
 
 // creates the store
 export default (rootReducer, rootSaga) => {
@@ -15,8 +13,8 @@ export default (rootReducer, rootSaga) => {
 
   /* ------------- Saga Middleware ------------- */
 
-  const sagaMonitor = Config.useReactotron ? console.tron.createSagaMonitor() : null;
-  const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
+  const sagaMonitor = console.tron && console.tron.createSagaMonitor();
+  const sagaMiddleware = createSagaMiddleware({sagaMonitor});
   middleware.push(sagaMiddleware);
 
   /* ------------- Assemble Middleware ------------- */
@@ -26,7 +24,9 @@ export default (rootReducer, rootSaga) => {
   // if Reactotron is enabled (default for process.env.NODE_ENV === 'development'),
   // we'll create the store through Reactotron
   const createAppropriateStore = createStore;
-  if (Config.useReactotron) {
+  // eslint-disable-next-line no-console
+  if (console.tron) {
+    // eslint-disable-next-line no-console
     enhancers.push(console.tron.createEnhancer());
   }
   const store = createAppropriateStore(rootReducer, compose(...enhancers));

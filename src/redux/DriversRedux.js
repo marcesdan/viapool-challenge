@@ -8,7 +8,7 @@ const { Types, Creators } = createActions({
   driversRegisterSuccess: null,
   driversFailure: null,
   enabledDomainsRequest: null,
-  enabledDomainsSuccess: null,
+  enabledDomainsSuccess: ['data'],
 });
 
 export const DriversTypes = Types;
@@ -42,8 +42,8 @@ export const success = (state) => state.merge({ fetching: false, error: null });
 
 // successful avatar lookup
 export const domainsSuccess = (state, action) => {
-  const { avatar } = action;
-  return state.merge({ fetching: false, error: null, avatar });
+  const { data } = action;
+  return state.merge({ fetching: false, error: null, enabledDomains: data });
 };
 
 // failed to get the avatar
