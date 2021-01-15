@@ -26,10 +26,6 @@ export const INITIAL_STATE = Immutable({
 
 export const DriversSelectors = {
   enabledDomains: (state) => state.drivers.enabledDomains,
-  isDomainEnabled: (state, domain) => state.drivers.enabledDomains.some((it) => {
-    const regExp = new RegExp(`@${it}s*$`);
-    return regExp.test(domain);
-  }),
 };
 
 /* ------------- Reducers ------------- */

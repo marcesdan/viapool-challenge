@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import DriverSubmit from './DriverSubmit';
 import StartupRedux from '../redux/StartupRedux';
@@ -16,4 +16,4 @@ const RootContainer = () => {
   );
 };
 
-export default withRoot(RootContainer);
+export default memo(withRoot(RootContainer));

@@ -8,6 +8,7 @@
 node_modules
 dist
 stats.json
+.env
 
 # User-specific stuff
 .idea/**/workspace.xml

@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Grid } from '@material-ui/core';
-import { connect } from 'react-redux';
 import DriverInfo from '../components/DriverInfo';
 import DriverForm from '../components/DriverForm';
-import DriversRedux, { DriversSelectors } from '../redux/DriversRedux';
 
-const DriverSubmit = ({ isDomainEnabled, handleSubmit }) => (
+const DriverSubmit = () => (
   <Grid
     container
     component="main"
@@ -15,20 +13,9 @@ const DriverSubmit = ({ isDomainEnabled, handleSubmit }) => (
       <DriverInfo />
     </Grid>
     <Grid item xs={12} md={5} elevation={6} style={{ alignSelf: 'center' }}>
-      <DriverForm
-        isDomainEnabled={isDomainEnabled}
-        handleSubmit={handleSubmit}
-      />
+      <DriverForm />
     </Grid>
   </Grid>
 );
 
-const mapStateToProps = (state) => ({
-  isDomainEnabled: (domain) => DriversSelectors.isDomainEnabled(state, domain),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  handleSubmit: (data) => dispatch(DriversRedux.driversRegisterRequest(data)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DriverSubmit);
+export default memo(DriverSubmit);

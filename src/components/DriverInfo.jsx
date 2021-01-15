@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 import FormBox from './FormBox';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DriverInfo() {
+const DriverInfo = () => {
   const classes = useStyles();
   return (
     <div className={classes.image}>
@@ -47,4 +47,6 @@ export default function DriverInfo() {
       </FormBox>
     </div>
   );
-}
+};
+
+export default memo(DriverInfo);

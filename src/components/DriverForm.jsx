@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import {
-  Button, Dialog, DialogActions, DialogContent,
-  Grid, Icon, TextField, DialogContentText, DialogTitle,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Grid,
+  Icon,
+  TextField,
 } from '@material-ui/core';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from './FormBox';
 import Typography from './Typography';
+import DriversRedux, { DriversSelectors } from '../redux/DriversRedux';
 
-function DriverForm({ handleSubmit, isDomainEnabled }) {
+function DriverForm() {
   const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
-
+  const enabledDomains = useSelector((state) => DriversSelectors.enabledDomains(state));
+  const dispatch = useDispatch();
+  const handleSubmit = (data) => dispatch(DriversRedux.driversRegisterRequest(data));
   function handleClose() {
     setSubmitionCompleted(false);
   }
@@ -23,7 +33,10 @@ function DriverForm({ handleSubmit, isDomainEnabled }) {
       .test(
         'is-domain-enabled',
         'El ingresado dominio no se encuentra habilitado',
-        (value) => isDomainEnabled(value),
+        (email) => enabledDomains.some((it) => {
+          const regExp = new RegExp(`@${it}s*$`);
+          return regExp.test(email);
+        }),
       ),
     telefono: Yup.string().required('Required'),
     edad: Yup.number().required().positive().integer(),
@@ -201,9 +214,4 @@ function DriverForm({ handleSubmit, isDomainEnabled }) {
   );
 }
 
-DriverForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  isDomainEnabled: PropTypes.func.isRequired,
-};
-
-export default DriverForm;
+export default memo(DriverForm);
