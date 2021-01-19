@@ -1,9 +1,15 @@
-import React, { memo, useEffect } from 'react';
+import React, {
+  memo, useEffect, Suspense, lazy,
+} from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import DriverSubmit from './DriverSubmit';
+import * as Sentry from '@sentry/react';
 import StartupRedux from '../redux/StartupRedux';
 import withRoot from '../layout/withRoot';
 import DriversRedux from '../redux/DriversRedux';
+import ErrorMessage from '../components/ErrorMessage';
+
+const DriverSubmit = lazy(() => import(/* webpackChunkName: "driver-submit" */ './DriverSubmit'));
 
 const RootContainer = () => {
   const dispatch = useDispatch();
@@ -12,7 +18,13 @@ const RootContainer = () => {
     dispatch(DriversRedux.enabledDomainsRequest());
   }, []);
   return (
-    <DriverSubmit />
+    <Sentry.ErrorBoundary fallback={ErrorMessage}>
+      <Suspense fallback={<div />}>
+        <Switch>
+          <Route exact path="/" component={DriverSubmit} />
+        </Switch>
+      </Suspense>
+    </Sentry.ErrorBoundary>
   );
 };
 

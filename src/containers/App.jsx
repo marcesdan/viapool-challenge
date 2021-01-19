@@ -2,6 +2,7 @@ import React from 'react';
 
 import '../assets/sass/app.styles.scss';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import createStore from '../redux';
 import RootContainer from './RootContainer';
 
@@ -10,7 +11,9 @@ const store = createStore();
 
 const App = () => (
   <Provider store={store}>
-    <RootContainer />
+    <BrowserRouter>
+      <RootContainer />
+    </BrowserRouter>
   </Provider>
 );
 
