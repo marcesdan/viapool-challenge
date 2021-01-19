@@ -62,7 +62,6 @@ function DriverForm() {
           validationSchema={driverSchema}
         >
           {({
-            dirty,
             errors,
             handleBlur,
             handleChange,

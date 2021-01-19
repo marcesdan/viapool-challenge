@@ -1,5 +1,10 @@
+import * as Sentry from '@sentry/react';
+
 const useReactotron = process.env.NODE_ENV === 'development';
 const useMirage = process.env.NODE_ENV === 'development';
+
+Sentry.init({ dsn: process.env.SENTRY_DSN });
+Sentry.captureMessage('Hola mundo');
 
 const mirageLoad = async () => useMirage && import(
   /* webpackChunkName: "mirage-config" */

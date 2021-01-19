@@ -6,7 +6,7 @@ import FormBox from './FormBox';
 const carImg = require('../assets/images/car-open.jpg');
 const logo = require('../assets/images/logo.png');
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   image: {
     backgroundImage: `url(${carImg})`,
     backgroundRepeat: 'no-repeat',
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DriverInfo = () => {
+  throw new Error();
   const classes = useStyles();
   // throw new Error();
   return (

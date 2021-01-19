@@ -22,6 +22,7 @@ const RootContainer = () => {
       <Suspense fallback={<div />}>
         <Switch>
           <Route exact path="/" component={DriverSubmit} />
+          <Route exact path="/error" component={ErrorMessage} />
         </Switch>
       </Suspense>
     </Sentry.ErrorBoundary>
