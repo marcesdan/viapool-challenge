@@ -1,7 +1,6 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const paths = require('./paths');
 
 module.exports = {
@@ -38,11 +37,6 @@ module.exports = {
       favicon: `${paths.src}/assets/icons/favicon.png`,
       template: `${paths.public}/index.html`, // template file
       filename: 'index.html', // output file
-    }),
-    new Dotenv({
-      safe: true,
-      allowEmptyValues: true,
-      systemvars: true,
     }),
   ],
   // Determine how modules within the project are treated
