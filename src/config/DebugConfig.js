@@ -1,14 +1,11 @@
 import * as Sentry from '@sentry/react';
-// import dotenv from 'dotenv';
 
-const useReactotron = process.env.NODE_ENV === 'development';
-const useMirage = process.env.NODE_ENV === 'development';
+const useReactotron = process.env.DEBUG;
+const useMirage = process.env.DEBUG;
 
-// dotenv.config();
-
-Sentry.init({ dsn: process.env.SENTRY_DSN });
-console.log(process.env.SENTRY_DSN, process.env.NODE_ENV);
-console.log('eeeenv...', process.env.SENTRY_DSN, process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'production') {
+  Sentry.init({ dsn: process.env.SENTRY_DSN });
+}
 
 const mirageLoad = async () => useMirage && import(
   /* webpackChunkName: "mirage-config" */
