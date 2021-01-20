@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 // creates the store
@@ -13,8 +13,9 @@ export default (rootReducer, rootSaga) => {
 
   /* ------------- Saga Middleware ------------- */
 
+  // eslint-disable-next-line no-console
   const sagaMonitor = console.tron && console.tron.createSagaMonitor();
-  const sagaMiddleware = createSagaMiddleware({sagaMonitor});
+  const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
   middleware.push(sagaMiddleware);
 
   /* ------------- Assemble Middleware ------------- */

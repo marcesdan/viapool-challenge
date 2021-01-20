@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react';
 
-const useReactotron = process.env.DEBUG;
-const useMirage = process.env.DEBUG;
+const useReactotron = process.env.DEBUG === 'true';
+const useMirage = useReactotron;
 
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({ dsn: process.env.SENTRY_DSN });
