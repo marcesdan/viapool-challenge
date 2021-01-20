@@ -21,9 +21,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const DriverInfo = () => {
-  throw new Error();
   const classes = useStyles();
-  // throw new Error();
   return (
     <div className={classes.image}>
       <FormBox>
