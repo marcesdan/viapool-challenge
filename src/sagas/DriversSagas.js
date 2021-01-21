@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects';
-import DriversRedux from '../redux/DriversRedux';
+import DriversRedux from 'stores/DriversRedux';
 
 export function* registerDriver(api, action) {
   const { data } = action;

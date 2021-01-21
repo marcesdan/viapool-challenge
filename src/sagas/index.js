@@ -1,19 +1,16 @@
-import { takeLatest, all } from 'redux-saga/effects';
-import GitHubSrv from '../services/GitHubService';
-import DriversSrv from '../services/DriversService';
+import { all, takeLatest } from 'redux-saga/effects';
+import { DriversTypes } from 'stores/DriversRedux';
+import GitHubSrv from 'services/GitHubService';
+import DriversSrv from 'services/DriversService';
 // import DebugConfig from '../config/DebugConfig';
-
 /* ------------- Types ------------- */
-
-import { StartupTypes } from '../redux/StartupRedux';
-import { GithubTypes } from '../redux/GithubRedux';
+import { StartupTypes } from 'stores/StartupRedux';
+import { GithubTypes } from 'stores/GithubRedux';
 
 /* ------------- Sagas ------------- */
-
-import { startup } from './StartupSagas';
-import getUserAvatar from './GithubSagas';
-import { DriversTypes } from '../redux/DriversRedux';
-import { getEnabledDomains, registerDriver } from './DriversSagas';
+import { startup } from 'sagas//StartupSagas';
+import getUserAvatar from 'sagas/GithubSagas';
+import { getEnabledDomains, registerDriver } from 'sagas/DriversSagas';
 
 /* ------------- API ------------- */
 

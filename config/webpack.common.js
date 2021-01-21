@@ -69,6 +69,19 @@ module.exports = {
     ],
   },
   resolve: {
+    alias: {
+      assets: `${paths.src}/assets/`,
+      components: `${paths.src}/components/`,
+      config: `${paths.src}/config/`,
+      containers: `${paths.src}/containers/`,
+      layout: `${paths.src}/layout/`,
+      stores: `${paths.src}/stores/`,
+      routes: `${paths.src}/routes/`,
+      sagas: `${paths.src}/sagas/`,
+      services: `${paths.src}/services/`,
+      styles: `${paths.src}/styles/`,
+      transforms: `${paths.src}/transforms/`,
+    },
     extensions: ['.wasm', '.mjs', '.js', '.jsx', '.json'],
   },
   optimization: {

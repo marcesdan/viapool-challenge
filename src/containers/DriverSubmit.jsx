@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Grid } from '@material-ui/core';
-import DriverInfo from '../components/DriverInfo';
-import DriverForm from '../components/DriverForm';
+import DriverInfo from 'components/DriverInfo';
+import DriverForm from 'components/DriverForm';
 
 const DriverSubmit = () => (
   <Grid

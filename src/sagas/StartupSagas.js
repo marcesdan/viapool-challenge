@@ -1,6 +1,6 @@
 import { put, select } from 'redux-saga/effects';
 import { isString } from 'lodash';
-import GitHubRedux, { GithubSelectors } from '../redux/GithubRedux';
+import GitHubRedux, { GithubSelectors } from 'stores/GithubRedux';
 
 // exported to make available for tests
 export const { selectAvatar } = GithubSelectors;

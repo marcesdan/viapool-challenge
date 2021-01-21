@@ -1,10 +1,10 @@
 import React from 'react';
 
-import '../styles/sass/app.styles.scss';
+import 'styles/sass/app.styles.scss';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import createStore from '../redux';
-import RootContainer from './RootContainer';
+import createStore from 'stores';
+import RootContainer from 'containers/RootContainer';
 
 // create our store
 const store = createStore();

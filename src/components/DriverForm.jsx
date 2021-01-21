@@ -13,9 +13,9 @@ import {
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import DriversRedux, { DriversSelectors } from 'stores/DriversRedux';
 import FormContainer from './FormBox';
 import Typography from './Typography';
-import DriversRedux, { DriversSelectors } from '../redux/DriversRedux';
 
 function DriverForm() {
   const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);

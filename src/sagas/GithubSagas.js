@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { get } from 'lodash';
-import GithubRedux from '../redux/GithubRedux';
+import GithubRedux from 'stores/GithubRedux';
 
 export default function* getUserAvatar(api, action) {
   const { username } = action;

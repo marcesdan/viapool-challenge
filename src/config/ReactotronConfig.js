@@ -10,8 +10,7 @@ const tron = Reactotron.configure({
   name: 'Drivers App',
   host: 'localhost',
   port: 9090,
-})
-  .use(reactotronRedux({ onRestore: Immutable }))
+}).use(reactotronRedux({ onRestore: Immutable }))
   .use(sagaPlugin());
   // https://github.com/infinitered/reactotron for more options!
 tron.connect();
