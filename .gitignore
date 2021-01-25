@@ -9,6 +9,8 @@ node_modules
 dist
 stats.json
 .env
+public/icons
+public/images
 
 # User-specific stuff
 .idea/**/workspace.xml
